@@ -3,14 +3,16 @@ pipeline {
 
     stages {
         
-        stage('Building') {
+        stage('Clone repository') {
             steps {
-                echo 'The Code will be now be built into an artifact'
+                git 
+                  'https://github.com/deepsardana/jenkins-pipeline.git'
             }
         }
-        stage('Artifact Archiving') {
+        stage('BUild Image') {
             steps {
-                echo 'The Artifact will be uploaded to an artifact repository'
+                script { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
             }
         }
         stage('Testing') {
