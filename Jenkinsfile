@@ -9,7 +9,7 @@ pipeline {
                   'https://github.com/deepsardana/jenkins-pipeline.git'
             }
         }
-        stage('BUild Image') {
+        stage('Build Image') {
             steps {
                 script { 
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
